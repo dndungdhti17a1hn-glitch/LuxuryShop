@@ -39,8 +39,8 @@ public class Sigup extends HttpServlet {
 
     if (!pass.equals(re_pass)) {
         // Gắn thông báo vào request
-        request.setAttribute("mess", "Mật khẩu nhập lại không khớp!");
-        // Forward về lại trang jsp (giả sử file của bạn là home.jsp)
+        request.setAttribute("mess", "Mật khẩu không khớp");
+        request.setAttribute("type", "signup");
         request.getRequestDispatcher("home.jsp").forward(request, response);
     } else {
         DAO dao = new DAO();
