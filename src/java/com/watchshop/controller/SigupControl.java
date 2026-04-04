@@ -30,21 +30,30 @@ public class Sigup extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String user = request.getParameter("user");
-        String pass = request.getParameter("pass");
-        String re_pass = request.getParameter("repass");
-        if(!pass.equals(re_pass)){
-            response.sendRedirect("Login.jsp");
-        }else{
-            DAO dao = new DAO();
-            User a = dao.checkAccountExist(user);
-            if(a == null){
-                dao.singup(user, pass);
-                response.sendRedirect("home");
-            }else{
-                response.sendRedirect("Login.jsp");
-            }
+     request.setCharacterEncoding("UTF-8");
+    String user = request.getParameter("user");
+    String pass = request.getParameter("pass");
+    String re_pass = request.getParameter("repass");
+    String email = request.getParameter("email");
+    String fullname = request.getParameter("fullname");
+
+    if (!pass.equals(re_pass)) {
+        // Gắn thông báo vào request
+        request.setAttribute("mess", "Mật khẩu nhập lại không khớp!");
+        // Forward về lại trang jsp (giả sử file của bạn là home.jsp)
+        request.getRequestDispatcher("home.jsp").forward(request, response);
+    } else {
+        DAO dao = new DAO();
+        User a = dao.checkAccountExist(user);
+        if (a == null) {
+            dao.signup(user, pass, email, fullname);
+            request.setAttribute("mess", "Đăng ký thành công!");
+            request.getRequestDispatcher("home.jsp").forward(request, response);
+        } else {
+            request.setAttribute("mess", "Tài khoản đã tồn tại!");
+            request.getRequestDispatcher("home.jsp").forward(request, response);
         }
+    }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
