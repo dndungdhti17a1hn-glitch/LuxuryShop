@@ -36,7 +36,7 @@ public class LoginControl extends HttpServlet {
         DAO dao = new DAO();
         User a = dao.login(username, password);
         if (a == null) {
-            request.setAttribute("mess", "Wrong user or pass");
+            request.setAttribute("mess", "Sai tài khoản hoặc mật khẩu");
             request.getRequestDispatcher("Login.jsp").forward(request, response);
         } else {
             HttpSession session = request.getSession();
