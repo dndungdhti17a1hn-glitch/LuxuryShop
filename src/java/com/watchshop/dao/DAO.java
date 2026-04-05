@@ -9,6 +9,7 @@ import context.DBContext;
 import entity.Account;
 import entity.Category;
 import entity.Product;
+import entity.Contact;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -322,6 +323,19 @@ public class DAO {
             ps.setString(7, pid);
             ps.executeUpdate();
         } catch (Exception e) {
+        }
+    }
+    public void Contact(Contact c) {
+    String query = "INSERT INTO ContactTable VALUES (?, ?, ?)";
+        try {
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, c.getName());
+            ps.setString(2, c.getEmail());
+            ps.setString(3, c.getMessage());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
