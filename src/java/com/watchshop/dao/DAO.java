@@ -213,8 +213,8 @@ public class DAO {
         return null;
     }
 
-    public Account login(String user, String pass) {
-        String query = "select * from account\n"
+    public User login(String user, String pass) {
+        String query = "select * from user\n"
                 + "where [user] = ?\n"
                 + "and pass = ?";
         try {
@@ -235,8 +235,8 @@ public class DAO {
         return null;
     }
 
-    public Account checkAccountExist(String user) {
-        String query = "select * from account\n"
+    public User checkAccountExist(String user) {
+        String query = "select * from user\n"
                 + "where [user] = ?\n";
         try {
             conn = new DBContext().getConnection();//mo ket noi voi sql
@@ -256,7 +256,7 @@ public class DAO {
     }
 
     public void singup(String user, String pass) {
-        String query = "insert into account\n"
+        String query = "insert into user\n"
                 + "values(?,?,0,0)";
         try {
             conn = new DBContext().getConnection();//mo ket noi voi sql
