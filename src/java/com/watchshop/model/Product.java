@@ -10,7 +10,8 @@ package com.watchshop.model;
  */
 public class Product {
     private int id;
-    private String name;        
+    private String name;    
+    private String brand;
     private double price;      
     private String description; 
     private int stock;
@@ -18,9 +19,10 @@ public class Product {
     public Product() {
     }
 
-    public Product(int id, String name, double price, String description, int stock) {
+    public Product(int id, String name, String brand double price, String description, int stock) {
         this.id = id;
         this.name = name;
+        this.brand = brand;
         this.price = price;
         this.description = description;
         this.stock = stock;
@@ -40,6 +42,14 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.name = brand;
     }
 
     public double getPrice() {
